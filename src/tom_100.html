@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script type="module">
+    import { TomIDB } from "./tomIndexDB"
+
+    // let tom = new TomIDB();
+  
+
+    for (let i = 0; i < 100; i++) {
+      let tom = new TomIDB();
+      let a = await tom.open(i+"tdb", "TOMSONG")
+      let b = await tom.add(i+"abc", "abc_" + i);
+      await tom.close();
+    }
+ 
+  </script>
+</body>
+
+</html>

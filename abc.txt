@@ -1,0 +1,39 @@
+        var request = window.indexedDB.open("tom",4);
+        var db = await new Promise(
+            resolve => {
+                request.onsuccess = function () {
+                    resolve(console.log('数据库打开成功'))
+                    //request.result
+                }
+            },
+            reject => {
+                request.onsuccess = function () {
+                    console.log('数据库打开错误')
+                }
+            }
+        )
+       request.onupgradeneeded = function (event) {
+
+  var db = event.target.result;
+
+
+  db.onerror = function (event) {
+    
+  };
+
+  // Create an objectStore for this database
+
+  var objectStore = db.createObjectStore("toDoList", { keyPath: "taskTitle" });
+
+  // define what data items the objectStore will contain
+
+  objectStore.createIndex("hours", "hours", { unique: false });
+  objectStore.createIndex("minutes", "minutes", { unique: false });
+  objectStore.createIndex("day", "day", { unique: false });
+  objectStore.createIndex("month", "month", { unique: false });
+  objectStore.createIndex("year", "year", { unique: false });
+
+  objectStore.createIndex("notified", "notified", { unique: false });
+
+
+};
